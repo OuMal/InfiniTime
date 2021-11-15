@@ -1,5 +1,5 @@
 # GitHub Actions Workflow to build PineTime Watch Face Simulator with LVGL and WebAssembly
-# See https://github.com/AppKaki/lvgl-wasm/blob/master/README.md 
+# See https://github.com/AppKaki/lvgl-wasm/blob/master/README.md
 # and https://lupyuen.github.io/pinetime-rust-mynewt/articles/cloud
 
 # Name of this Workflow
@@ -10,11 +10,11 @@ on:
 
   # Run this Workflow when files are updated (Pushed) in the "master" Branch
   push:
-    branches: [ master ]
-    
+    branches: [ master, develop ]
+
   # Also run this Workflow when a Pull Request is created or updated in the "master" Branch
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
 # Steps to run for the Workflow
 jobs:
@@ -74,7 +74,7 @@ jobs:
 
         # Show version
         emcc --version
-        emcc --version        
+        emcc --version
 
     - name: Check cache for wabt
       id:   cache-wabt
@@ -101,7 +101,7 @@ jobs:
       run:  |
         cd /tmp
         git clone https://github.com/AppKaki/lvgl-wasm
-        
+
     - name: Copy Watch Face Clock.cpp to LVGL for WebAssembly
       run:  |
         cp src/displayapp/screens/Clock.cpp /tmp/lvgl-wasm/clock
@@ -156,9 +156,9 @@ jobs:
         # Name of the branch to use, if different from the one that triggered the workflow
         # ref: # optional
         # Arguments for the git rm command
-        # remove: # optional, default is 
+        # remove: # optional, default is
         # The name of the tag to add to the new commit
-        # tag: # optional, default is 
+        # tag: # optional, default is
 
     - name: Upload Outputs
       uses: actions/upload-artifact@v2
