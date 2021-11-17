@@ -30,6 +30,11 @@ WatchFaceLM::WatchFaceLM(DisplayApp* app,
     motionController {motionController} {
   settingsController.SetClockFace(3);
 
+  lmIcon = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_color(lmIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x7CDAB8));
+  lv_label_set_text(lmIcon, Symbols::atom);
+  lv_obj_align(lmIcon, lv_scr_act(), LV_ALIGN_IN_TOP_LEFT, 0, 0);
+
   batteryIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_text(batteryIcon, Symbols::batteryFull);
   lv_obj_align(batteryIcon, lv_scr_act(), LV_ALIGN_IN_TOP_RIGHT, 0, 0);
@@ -55,7 +60,6 @@ WatchFaceLM::WatchFaceLM(DisplayApp* app,
 
   label_time = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_font(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_extrabold_compressed);
-
   lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
 
   label_time_ampm = lv_label_create(lv_scr_act(), nullptr);
@@ -72,7 +76,7 @@ WatchFaceLM::WatchFaceLM(DisplayApp* app,
   stepValue = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(stepValue, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FFE7));
   lv_label_set_text(stepValue, "0");
-  lv_obj_align(stepValue, lv_scr_act(), LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
+  lv_obj_align(stepValue, lv_scr_act(), LV_ALIGN_IN_BOTTOM_MID, 0, 0);
 
   stepIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(stepIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FFE7));
