@@ -33,7 +33,7 @@ WatchFaceLM::WatchFaceLM(DisplayApp* app,
   lmIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(lmIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x7CDAB8));
   lv_label_set_text(lmIcon, Symbols::atom);
-  lv_obj_align(lmIcon, lv_scr_act(), LV_ALIGN_IN_TOP_LEFT, 0, 0);
+  lv_obj_align(lmIcon, notificationIcon, LV_ALIGN_OUT_RIGHT_MID, 5, 0);
 
   batteryIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_text(batteryIcon, Symbols::batteryFull);
