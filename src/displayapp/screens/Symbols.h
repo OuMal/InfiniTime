@@ -58,7 +58,7 @@ namespace Pinetime {
         static constexpr const char* highlight = "\xEE\xA4\x87"; // e907
 
         // Custom
-        static constexpr const char* atom = "\xEF\x97\x92";
+        static constexpr const char* atomIcon = "\xEF\x97\x92";
         static constexpr const char* middleFinger = "\xEF\xA0\x86";
       }
     }
