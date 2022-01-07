@@ -1,4 +1,4 @@
-#include "Clock.h"
+#include "displayapp/screens/Clock.h"
 
 #include <date/date.h>
 #include <lvgl/lvgl.h>
@@ -6,11 +6,12 @@
 #include "components/motion/MotionController.h"
 #include "components/ble/BleController.h"
 #include "components/ble/NotificationManager.h"
-#include "../DisplayApp.h"
-#include "WatchFaceDigital.h"
-#include "WatchFaceAnalog.h"
-#include "WatchFaceLM.h"
-#include "PineTimeStyle.h"
+#include "components/settings/Settings.h"
+#include "displayapp/DisplayApp.h"
+#include "displayapp/screens/WatchFaceDigital.h"
+#include "displayapp/screens/WatchFaceAnalog.h"
+#include "displayapp/screens/WatchFaceLM.h"
+#include "displayapp/screens/PineTimeStyle.h"
 
 using namespace Pinetime::Applications::Screens;
 
@@ -56,6 +57,10 @@ Clock::~Clock() {
 
 bool Clock::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
   return screen->OnTouchEvent(event);
+}
+
+bool Clock::OnButtonPushed() {
+  return screen->OnButtonPushed();
 }
 
 std::unique_ptr<Screen> Clock::WatchFaceDigitalScreen() {
