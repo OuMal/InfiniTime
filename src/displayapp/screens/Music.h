@@ -20,7 +20,7 @@
 #include <FreeRTOS.h>
 #include <lvgl/src/lv_core/lv_obj.h>
 #include <string>
-#include "Screen.h"
+#include "displayapp/screens/Screen.h"
 
 namespace Pinetime {
   namespace Controllers {
@@ -40,7 +40,7 @@ namespace Pinetime {
         void OnObjectEvent(lv_obj_t* obj, lv_event_t event);
 
       private:
-        bool OnTouchEvent(TouchEvents event);
+        bool OnTouchEvent(TouchEvents event) override;
 
         void UpdateLength();
 
@@ -69,7 +69,7 @@ namespace Pinetime {
         std::string track;
 
         /** Total length in seconds */
-        int totalLength;
+        int totalLength = 0;
         /** Current length in seconds */
         int currentLength;
         /** Last length */

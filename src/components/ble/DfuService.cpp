@@ -1,8 +1,9 @@
-#include "DfuService.h"
+#include "components/ble/DfuService.h"
 #include <cstring>
 #include "components/ble/BleController.h"
 #include "drivers/SpiNorFlash.h"
 #include "systemtask/SystemTask.h"
+#include <nrf_log.h>
 
 using namespace Pinetime::Controllers;
 

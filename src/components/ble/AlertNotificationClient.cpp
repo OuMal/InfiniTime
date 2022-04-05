@@ -1,7 +1,8 @@
-#include "AlertNotificationClient.h"
+#include "components/ble/AlertNotificationClient.h"
 #include <algorithm>
-#include "NotificationManager.h"
+#include "components/ble/NotificationManager.h"
 #include "systemtask/SystemTask.h"
+#include <nrf_log.h>
 
 using namespace Pinetime::Controllers;
 constexpr ble_uuid16_t AlertNotificationClient::ansServiceUuid;
