@@ -1,9 +1,11 @@
-#include <libs/lvgl/lvgl.h>
-#include "WatchFaceAnalog.h"
-#include "BatteryIcon.h"
-#include "BleIcon.h"
-#include "Symbols.h"
-#include "NotificationIcon.h"
+#include "displayapp/screens/WatchFaceAnalog.h"
+#include <cmath>
+#include <lvgl/lvgl.h>
+#include "displayapp/screens/BatteryIcon.h"
+#include "displayapp/screens/BleIcon.h"
+#include "displayapp/screens/Symbols.h"
+#include "displayapp/screens/NotificationIcon.h"
+#include "components/settings/Settings.h"
 
 LV_IMG_DECLARE(bg_clock);
 
@@ -55,7 +57,6 @@ WatchFaceAnalog::WatchFaceAnalog(Pinetime::Applications::DisplayApp* app,
     bleController {bleController},
     notificationManager {notificationManager},
     settingsController {settingsController} {
-  settingsController.SetClockFace(1);
 
   sHour = 99;
   sMinute = 99;
@@ -73,7 +74,7 @@ WatchFaceAnalog::WatchFaceAnalog(Pinetime::Applications::DisplayApp* app,
   notificationIcon = lv_label_create(lv_scr_act(), NULL);
   lv_obj_set_style_local_text_color(notificationIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FF00));
   lv_label_set_text(notificationIcon, NotificationIcon::GetIcon(false));
-  lv_obj_align(notificationIcon, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
+  lv_obj_align(notificationIcon, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
 
   // Date - Day / Week day
 
@@ -136,9 +137,9 @@ WatchFaceAnalog::~WatchFaceAnalog() {
 }
 
 void WatchFaceAnalog::UpdateClock() {
-  hour = dateTimeController.Hours();
-  minute = dateTimeController.Minutes();
-  second = dateTimeController.Seconds();
+  uint8_t hour = dateTimeController.Hours();
+  uint8_t minute = dateTimeController.Minutes();
+  uint8_t second = dateTimeController.Seconds();
 
   if (sMinute != minute) {
     auto const angle = minute * 6;
@@ -213,9 +214,9 @@ void WatchFaceAnalog::Refresh() {
   currentDateTime = dateTimeController.CurrentDateTime();
 
   if (currentDateTime.IsUpdated()) {
-    month = dateTimeController.Month();
-    day = dateTimeController.Day();
-    dayOfWeek = dateTimeController.DayOfWeek();
+    Pinetime::Controllers::DateTime::Months month = dateTimeController.Month();
+    uint8_t day = dateTimeController.Day();
+    Pinetime::Controllers::DateTime::Days dayOfWeek = dateTimeController.DayOfWeek();
 
     UpdateClock();
 

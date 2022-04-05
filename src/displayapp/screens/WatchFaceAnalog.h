@@ -4,8 +4,7 @@
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include "Screen.h"
-#include "ScreenList.h"
+#include "displayapp/screens/Screen.h"
 #include "components/datetime/DateTimeController.h"
 #include "components/battery/BatteryController.h"
 #include "components/ble/BleController.h"
@@ -36,13 +35,6 @@ namespace Pinetime {
 
       private:
         uint8_t sHour, sMinute, sSecond;
-        uint8_t hour;
-        uint8_t minute;
-        uint8_t second;
-
-        Pinetime::Controllers::DateTime::Months month;
-        uint8_t day;
-        Pinetime::Controllers::DateTime::Days dayOfWeek;
 
         Pinetime::Controllers::DateTime::Months currentMonth = Pinetime::Controllers::DateTime::Months::Unknown;
         Pinetime::Controllers::DateTime::Days currentDayOfWeek = Pinetime::Controllers::DateTime::Days::Unknown;
@@ -75,7 +67,7 @@ namespace Pinetime {
         lv_obj_t* batteryIcon;
         lv_obj_t* notificationIcon;
 
-        Controllers::DateTime& dateTimeController;
+        const Controllers::DateTime& dateTimeController;
         Controllers::Battery& batteryController;
         Controllers::Ble& bleController;
         Controllers::NotificationManager& notificationManager;
